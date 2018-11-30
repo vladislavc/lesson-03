@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Урок 03</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+</head>
+<body>
+    <style>
+    * {
+        padding:0;
+        margin:0;
+        box-sizing:border-box;
+        font-family:"Roboto"
+    }
+    h1 {font-size: 40px;}
+    h2 {font-size:20px;}
+    h1,
+    h2 {
+        text-align:center;
+    }
+    header {
+        padding:20px 0;
+        color:#444;
+        background:#aaf;
+    }
+    p {
+        display: block;
+        padding:40px 60px 20px 60px;
+    }
+    pre {
+        font-size:14px;
+        background:#444;
+        color:#aaf;
+        padding:20px 10px;
+        font-family:monospace;
+                overflow:auto;
+    }
+    pre strong {
+        color:#ddf;
+                font-family:monospace;
+    }
+    a {
+        text-decoration: none;
+        color:#444;
+        font-weight:bold;
+    }
+    </style>
+    <header>
+        <h2>Цисаренко Владислав</h2>
+        <h1>Урок 3</h1>
+        <p>
+            <strong>Задание: </strong>Есть три объекта: users, posts и comments. ( готовые объекты уже ждут вас по <a href="https://garevna.github.io/js-samples/#02">ссылке</a> ). Написать код функции getPostComments ( postId ), которая возвращает массив всех комментариев к посту с идентификатором postId ( с именем автора комментария и текстом комментария )
+        </p>
+    </header>
+    <main>
+<code><pre>
+    // you should write the code of function  getCurrentPostComments
+
+    var users = {
+            14587: {
+                    name: "Ivan",
+                    email: "ivan78@gmail.com"
+            },
+            28419: {
+                    name: "Georg",
+                    email: "georg.klep@gmail.com"
+            },
+            41457: {
+                    name: "Stephan",
+                    email: "stephan.borg@gmail.com"
+            }
+    }
+    var posts = {
+            7891451: {
+                    author: 14587,
+                    text: "Imagine we can encapsulate these secondary responsibilities in functions"
+            },
+            7891452: {
+                    author: 28419,
+                    text: `В конструкторе ключевое слово super используется как функция, вызывающая родительский конструктор.
+                            Её необходимо вызвать до первого обращения к ключевому слову this в теле конструктора.
+                            Ключевое слово super также может быть использовано для вызова функций родительского объекта`
+            },
+            7891453: {
+                    author: 28419,
+                    text: `DOM не обрабатывает или не вынуждает проверять пространство имен как таковое.
+                            Префикс пространства имен, когда он связан с конкретным узлом, не может быть изменен`
+            },
+            7891454: {
+                    author: 14587,
+                    text: "Ключевое слово super используется для вызова функций, принадлежащих родителю объекта"
+            }
+    }
+    var comments = {
+            91078454: {
+                    postId: 7891451,
+                    author: 28419,
+                    text: `The static String.fromCharCode() method returns a string created
+                            from the specified sequence of UTF-16 code units`
+            },
+            91078455: {
+                    postId: 7891451,
+                    author: 41457,
+                    text: `HTML элемент &lt;template&gt; — это механизм для отложенного рендера клиентского контента,
+                            который не отображается во время загрузки, но может быть инициализирован при помощи JavaScript`
+            },
+            91078457: {
+                    postId: 7891452,
+                    author: 41457,
+                    text: "Глобальный объект String является конструктором строк, или, последовательностей символов"
+            },
+            91078458: {
+                    postId: 7891452,
+                    author: 14587,
+                    text: `The Element.namespaceURI read-only property returns the namespace URI of the element,
+                            or null if the element is not in a namespace`
+            }
+    }
+
+    <strong>function getCurrentPostComments ( postId ) {
+            var res = [],
+                comment,
+                author
+            for (var i in comments) {
+                if (comments[i]["postId"] == postId) {
+                    comment = comments[i]["text"]
+                    for (var n in users) {
+                        if (comments[i]["author"] == n) {
+                            author = users[n]["name"]
+                        }
+                    }
+                    res.push({
+                        author: author || "неизвестный",
+                        text: comment || "пустой комментарий"
+                    })
+                }
+            }
+
+            return res
+    }</strong>
+
+    console.log ( getCurrentPostComments ( 7891451 ) )
+</pre></code>
+
+    </main>
+</body>
+</html>
